@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+*.pdf
+*html
+shinapps*
+*.sty
+himod/
+census*

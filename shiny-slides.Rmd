@@ -1,0 +1,92 @@
+---
+title: "A practical introduction to Shiny"
+author: "Robin Lovelace (University of Leeds)"
+date: "Presented 21^st^ January 2015, University of Sydney's ITLS"
+logo: /home/robin/Dropbox/Public/img/logos/cdrc-square.png
+output: ioslides_presentation
+bibliography: /home/robin/Documents/R.bib
+---
+
+## What is shiny?
+
+> - A framework for making R output **interactive**
+> - An 'app' development framework
+> - A (small) growing community of developers centred around RStudio
+
+Similar projects you should be aware of before diving into Shiny
+
+> - **animate** package
+> - Google Charts (**googleVis::**)
+> - **plotly**
+> - D3
+
+## What's shiny good for? | What's shiny not so good for?
+
+Build's on R's existing strengths
+
+> - Data visualisation [@wickham2011ggplot2]
+> - Increasingline widely understood language for querying data
+> - Amazing range of add-on packages
+
+Flexibility
+
+
+## Context
+
+> - House of Commons Criticising the DfT for using closed models
+> - 'Impact' and 'engagement' increasingly important for research funding
+> - Complex data cannot be adequately summarised in a single static graphic
+> - We've been contracted by the DfT (£100,000+) to create a 'propensity to cycle' tool
+
+## Interactive online tools
+
+> - AURIN
+> - Leeds-Bradford cycle path
+> - DECC's 'Energy 2050' planning tool
+> - Walkability index site
+> - Interactive download of bicycle paths
+
+## Shiny applications
+
+> - We'll take a look at a few online
+> - Precision farming [[@Jahanshiri2014]](http://stacks.iop.org/1755-1315/20/i=1/a=012014)
+> - Ebola app
+> - Census wards app
+> - RentSplit
+> - No transport-related apps!
+
+## Possible transport applications
+
+> - Time tabling
+> - Visualising flow data by mode/purpose/time
+> - User engagement (e.g. of different scenarios)
+> - Forms for questionnaires
+> - Public outreach 
+
+## The anatomy of a Shiny app
+
+The **user interface** (`ui.R`)
+
+```{r, eval=FALSE}
+shinyUI(fluidPage(
+))
+```
+
+The **server side** (`server.R`)
+
+```{r, eval=FALSE}
+shinyUI(fluidPage(
+))
+```
+
+## The practical
+
+> - Task 1: Modify RStudio's '01_hello' example
+> - Task 2: Recreate **rentSplit**
+> - Task 3: Create your own app!
+
+## References
+
+
+
+
