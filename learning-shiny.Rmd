@@ -179,6 +179,15 @@ Before building your own app (the next section), it's worth looking at the
 contents of the `runExample("01_hello")` app in some detail. We will modify
 this example for our own needs.
 
+## Downloading the project repository
+
+Navigate to the project's repository: https://github.com/Robinlovelace/learning-shiny
+
+Click on 'Download ZIP' on the right hand side of this page. Unzip the folder.
+Navigate into this folder and open the file `learning-shiny.Rproj` in
+RStudio. Take a look around and make yourself at home in this folder: it will
+be your digital home throughout this tutorial!
+
 # Modifying an app for your own needs
 
 The cornerstone of scientific progress can be summarised in a single phrase
