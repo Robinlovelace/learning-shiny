@@ -86,7 +86,7 @@ an interactive map on shiny, as illustrated by the impressive
 
 ## Resources
 
-- An ever-evolving [tutorial]() (which is may contain some errors)
+- An evolving [tutorial](https://github.com/Robinlovelace/learning-shiny/raw/master/learning-shiny.pdf) (which is may contain some errors)
 - A [GitHub repo](https://github.com/Robinlovelace/learning-shiny) where you can access the source code for this tutorial and contribute to it for the community if you wish.
 - The [slides from my talk](http://rpubs.com/RobinLovelace/54614), complete with an
 [audio recording](https://soundcloud.com/robin-lovelace-1/r-and-shiny-for-transport-applications) of the introduction to it.
