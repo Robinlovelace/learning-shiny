@@ -40,9 +40,9 @@ Flexibility
 
 ## Interactive online tools
 
-> - AURIN
-> - Leeds-Bradford cycle path
-> - DECC's 'Energy 2050' planning tool
+> - [AURIN](http://aurin.org.au/)
+> - Leeds-Bradford cycle path [interactive map](http://www.cyclecityconnect.co.uk/participate.php)
+> - DECC's 'Energy 2050' [planning tool](http://2050-calculator-tool.decc.gov.uk/)
 > - Walkability index site
 > - Interactive download of bicycle paths
 
@@ -80,6 +80,8 @@ shinyUI(fluidPage(
 ```
 
 ## The practical
+
+See https://github.com/Robinlovelace/learning-shiny
 
 > - Task 1: Modify RStudio's '01_hello' example
 > - Task 2: Recreate **rentSplit**
