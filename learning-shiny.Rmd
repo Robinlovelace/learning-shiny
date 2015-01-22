@@ -4,6 +4,7 @@ author: "Robin Lovelace"
 date: "01/20/2015"
 output:
   pdf_document:
+    fig_caption: yes
     number_sections: yes
     toc: yes
 header-includes: \usepackage{pmboxdraw}
@@ -23,57 +24,64 @@ This tutorial briefly describes **shiny**, an R package that enables development
 testing and deployment of interactive web applications.
 
 Shiny is extremely flexible, so you can build an application to help solve almost
-any real (or fictitious) quantifiable problem you can think of. It's a cliche
+any real (or fictitious) quantifiable problem you can think of, interactively.
+It's a cliche
 worth repeating: with **shiny**, you really are limited only by your imagination.
 
-Because **Shiny** is an open source software
-project with a very strong [community](https://groups.google.com/d/forum/shiny-discuss), it has excellent documentation,
-including a user group, a Gallery of examples and (most recommended of all)
+Because **Shiny** is an open source
+project with a user [community](https://groups.google.com/d/forum/shiny-discuss)
+and commercial support from RStudio, it has excellent documentation.
+This includes a user group, a Gallery of examples and (most recommended of all)
 a fantastic up-to-date [online tutorial](http://shiny.rstudio.com/tutorial/) maintained by
-[RStudio](http://www.rstudio.com/). Unless you're an R user [who lives under a rock], 
-you'll be aware of RStudio which has revolutionised R's user appeal with a
-slick user interface and dozens of tools that make life easier for R
-beginners and [developers](http://shiny.rstudio.com/articles/) alike. RStudio is a profit making company
-that has done more than any other organisation to promote, develop and
-communicate R to the new generation. To make a (perhaps unfair) analogy,
-RStudio is to R what Canonical is/was to Linux: a commercial enterprise
-that greatly improved the user-friendliness of the underlying program.
-
-RStudio's impact on R is hard to overstate and it's employees are
-responsible for a number of the most
-[frequently downloaded](http://crantastic.org/popcon) packages
-including [ggplot2](http://ggplot2.org/),
-[dplyr](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) and [stringr](http://journal.r-project.org/archive/2010-2/RJournal_2010-2_Wickham.pdf).
-
-This tutorial was even written and compiled in RStudio, with its
-seamless integration with [knitr](http://yihui.name/knitr/) and
-[RMarkdown](http://rmarkdown.rstudio.com/) which is now my default
-text editor for writing [tutorials](https://github.com/Robinlovelace/Creating-maps-in-R/), [vignettes](http://robinlovelace.net/r/2014/01/10/spatial-clipping-and-aggregation-in-R.html) and even
-academic papers.^[RMarkdown's recently added support for 
-[Pandoc citations](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html) has enabled it to be used as a fully fledged text
-editor. If I were to write my [thesis](http://etheses.whiterose.ac.uk/5027/) again, I'd probably do it in
-RMarkdown to save all the `\`s needed for pure Late X!]
-
-To cut a long story short, I RStudio for this tutorial:
-it even provides a button to test your applications with a single 
-click^[RStudio seemingly does **not** provide keyboard shortcuts for Shiny, something
-you'll see by tapping `Ctl-Shift-K` from your RStudio console now (hint hint
-RStudio developers!).]
+[RStudio](http://www.rstudio.com/), 
+who's software has made life easier for R
+beginners and [developers](http://shiny.rstudio.com/articles/) alike.
+In the latest version or RStudio for example, the autocompletion rules
+received an overhaul, allowing (amongst other things)
+objects created in `ui.R` to autocomplete in `server.R` in shiny apps
+(these files are described below in this tutorial).
+For these reasons RStudio is recommended as the IDE for this tutorial: 
+it even provides a button to auto-save and test shiny applications with a single 
+click (Figure 1).
 
 ```{r, echo=FALSE}
+# To make an (perhaps unfair) analogy,
+# RStudio is to R what Canonical is/was to Linux: a commercial enterprise
+# that greatly improved the user-friendliness of the underlying
+# program.^[RStudio's impact on R is hard to overstate and it's employees are
+# responsible for a number of the most
+# [frequently downloaded](http://crantastic.org/popcon) packages
+# including [ggplot2](http://ggplot2.org/),
+# [dplyr](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) and [stringr](http://journal.r-project.org/archive/2010-2/RJournal_2010-2_Wickham.pdf).
+# This tutorial was even written and compiled in RStudio Desktop, with its
+# seamless integration with [knitr](http://yihui.name/knitr/) and
+# [RMarkdown](http://rmarkdown.rstudio.com/). RStudio
+# is now sufficiently advanced and stable to be one's default
+# text editor for writing [tutorials](https://github.com/Robinlovelace/Creating-maps-in-R/), [vignettes](http://robinlovelace.net/r/2014/01/10/spatial-clipping-and-aggregation-in-R.html) and even
+# academic papers. RMarkdown's recently added support for 
+# [Pandoc citations](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html) has enabled it to be used as a fully fledged text
+# editor. If I were to write my [thesis](http://etheses.whiterose.ac.uk/5027/) again, I'd probably do it in
+# RMarkdown to save all the `\`s needed for pure LateX!.]
+```
+
+```{r, echo=FALSE, fig.cap="The 'Run App' button in RStudio."}
 img <- readPNG("/home/robin/repos/robinlovelace.github.io/img/rstudio-shiny-button.png")
 grid.raster(img)
 # [![shiny-button](/home/robin/repos/robinlovelace.github.io/img/rstudio-shiny-button.png)]()
+# is typical of the way it can boost productivity in an uninvasive hway^[RStudio seemingly does **not** provide keyboard shortcuts for Shiny, something
+# you'll see by tapping `Ctl-Shift-K` from your RStudio console now (hint hint
+# RStudio developers!).]
 ```
 
+There is already much high quality material on shiny, so why do we need another? 
+To avoid simply duplicating past work this
+tutorial builds on and creates a narrative for
+the excellent [RStudio tutorial](http://shiny.rstudio.com/tutorial/),
+rather than trying to 
+rebuild the wheel. The aim is simple: **to navigate beginners through the basics of shiny for creating interactive online visualisations**. 
 
-Because there is so much high quality material on shiny and
-web app development overall, it would be easy to repeat what's already
-out there. That is not
-the intention, so this tutorial builds on and creates a narrative for
-existing tutorials, rather than trying to 
-rebuild the wheel. The aim is simple: **to navigate new users of R through the exciting new world of online visualisation that it opens up via Shiny**. Before
-we proceed I'd like you to take a quick peak at the following shiny resources,
+Before
+proceeding it's worth taking a look at the following shiny resources,
 to get a sense of what else is out there:
 
 - RStudio's [shiny website](http://shiny.rstudio.com/).
@@ -84,38 +92,38 @@ to get a sense of what else is out there:
 
 # What shiny can (and cannot) do
 
-In addition to checking out the above resources, aspiring 'web app' creators
-should think about what **shiny** is well suited for before diving in.
+Before committing to shiny, it's important to think about what you want
+to acheive with it.
+**shiny** is well suited for:
 
-**shiny** is good for:
-
-- Relatively simple visualisations of small datasets that can be processed 'in the cloud'.
-- 'Proof of concept' demonstrations of the applications you are thinking of.
-- Rapid deployment if you already know R
+- Relatively simple visualisations of small datasets that can be processed on an external server.
+- 'Proof of concept' demonstrations of the applications that may be scaled-up at a later stage.
+- Rapid deployment of interactive applications without having to learn another language
+for people who are already proficient with R.
 
 **shiny** is not so good at:
 
-- Very large applications.
-- Map serving: this may be best left to something heavier duty like [GeoServer](http://geoserver.org/)
-- Collecting user information (at present)
+- Serving and processing large datasets (it may be best to pre-calculate results of
+complex computations and use shiny to visualise them).
+- Map serving: this may be best left to something heavier duty like [GeoServer](http://geoserver.org/) (although see the [SuperZip](http://shiny.rstudio.com/gallery/superzip-example.html) example).
+- Collecting user information.
 
-To see what **shiny** does well and not-so-well, it's worth taking a look at
-some examples.
+**shiny**'s strengths can be seen in the following examples.
 
-- An excellent real world example is the [Ebola-Dynamic-Model](https://econometricsbysimulation.shinyapps.io/Ebola-Dynamic-Model/) which provides an interactive model of the spread of Ebola.
-- The 'word cloud' example in RStudio's [gallery](http://shiny.rstudio.com/gallery/word-cloud.html) demonstrates that it's not *just* quantitative information that
-can be produced.
+- The [Ebola-Dynamic-Model](https://econometricsbysimulation.shinyapps.io/Ebola-Dynamic-Model/) which provides an interactive model of Ebola infections.
+- The 'word cloud' example in RStudio's [gallery](http://shiny.rstudio.com/gallery/word-cloud.html) illustrates the display of qualitative information..
 - The 'google-charts' example shows how **shiny** can integrate with existing web
 visualisation tools.
-- My favourite example is the [superzip](http://shiny.rstudio.com/gallery/superzip-example.html) also from the gallery. This demonstrates the ability to place data on-top of interactive maps.
-- There is an academic paper explaining how shiny was used to create a proof-of-concept
-app for precision farming [@Jahanshiri2014].
+- The '[superzip](http://shiny.rstudio.com/gallery/superzip-example.html)' example demonstrates R visualisations synchronised with a web map.
+- A paper by @Jahanshiri2014 which used **shiny** to create a proof-of-concept
+application, for precision farming.
 
 Alternatives to **shiny** are:
 
 - [Google charts](https://developers.google.com/chart/) which integrates with R (and shiny) via the **[googleVis](http://cran.r-project.org/package=googleVis)** package
 - [Plotly](https://plot.ly/), which has excellent integration with R via the **[plotly](https://plot.ly/r/getting-started/)** package.
-- [d3]() is an extremely flexible JavaScript visualisation package, which interfaces to R via the [d3Network](http://cran.r-project.org/web/packages/d3Network/index.html) package.
+- [d3](http://d3js.org/) is an extremely flexible JavaScript visualisation package, which interfaces to R via the [d3Network](http://cran.r-project.org/web/packages/d3Network/index.html) package.
+- [rCharts](http://rcharts.io/) is similar to shiny but is more focussed on visualisation and offers fewer options for user input. It can be used in shiny apps and as an interface between d3 and other JavaScript plotting libraries.
 
 Having browsed these options (and perhaps others) and deciding that **shiny**
 is the tool for the job, it's time to get started.
@@ -137,7 +145,7 @@ Based on the results from this, you can proceed. Let's run the widgets example:
 runExample("07_widgets")
 ```
 
-The most informative example for beginners is probably the first in most cases:
+The most informative example for beginners is probably the first:
 
 ```{r, eval=FALSE}
 runExample("01_hello")
@@ -145,7 +153,9 @@ runExample("01_hello")
 
 Spend some time taking a look at the `ui.R` and `server.R` files. Note that
 **every shiny app must contain these two files**, placed in a folder of the
-app's name. That's fundamental to the app's structure:
+app's name. That's fundamental to the app's structure. The following directory
+structure (contained on this project's GitHub page), for example, 
+contains two shiny apps:
 
 ```
 |-- hi
@@ -164,12 +174,11 @@ app's name. That's fundamental to the app's structure:
 ```
 
 The directory structure illustrated above shows a typical R working director
-with `shinyapps.R` being the only file in the route directory, which can
-be used to run the apps in the sub-folders `hi` and `rentSplit`. These
-are apps, containing the critical **ui** and **server** components. Note that
-`rentSplit` contains another sub-directory `shinyapps`. This repository does not
-affect the overall performance of the app: it's used to embed the app online
-on the free app hosting site [shinyapps.io](http://www.shinyapps.io/).
+with `shinyapps.R` being the only file in the route directory, 
+to run the apps in the sub-folders `hi` and `rentSplit`. These
+are apps. Note that both contain critical **ui**and **server** components. 
+`rentSplit` contains another sub-directory `shinyapps`, used to embed the app online
+on [shinyapps.io](http://www.shinyapps.io/).
 
 The rentSplit app that we are going to build today is hosted on this website
 and available to anyone worldwide, through the following link:
