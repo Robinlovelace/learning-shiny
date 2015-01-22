@@ -23,12 +23,12 @@ lapply(pkgs, library, character.only = TRUE)
 This tutorial briefly describes **shiny**, an R package that enables development,
 testing and deployment of interactive web applications.
 
-Shiny is extremely flexible, so you can build an application to help solve almost
+**shiny** is extremely flexible, so you can build an application to help solve almost
 any real (or fictitious) quantifiable problem you can think of, interactively.
 It's a cliche
-worth repeating: with **shiny**, you really are limited only by your imagination.
+worth repeating: with shiny, you really are limited only by your imagination.
 
-Because **Shiny** is an open source
+Because **shiny** is an open source
 project with a user [community](https://groups.google.com/d/forum/shiny-discuss)
 and commercial support from RStudio, it has excellent documentation.
 This includes a user group, a Gallery of examples and (most recommended of all)
@@ -38,10 +38,10 @@ who's software has made life easier for R
 beginners and [developers](http://shiny.rstudio.com/articles/) alike.
 In the latest version or RStudio for example, the autocompletion rules
 received an overhaul, allowing (amongst other things)
-objects created in `ui.R` to autocomplete in `server.R` in shiny apps
+objects created in `ui.R` to autocomplete in `server.R` in **shiny** apps
 (these files are described below in this tutorial).
 For these reasons RStudio is recommended as the IDE for this tutorial: 
-it even provides a button to auto-save and test shiny applications with a single 
+it even provides a button to auto-save and test **shiny** applications with a single 
 click (Figure 1).
 
 ```{r, echo=FALSE}
@@ -73,24 +73,27 @@ grid.raster(img)
 # RStudio developers!).]
 ```
 
-There is already much high quality material on shiny, so why do we need another? 
-To avoid simply duplicating past work this
-tutorial builds on and creates a narrative for
-the excellent [RStudio tutorial](http://shiny.rstudio.com/tutorial/),
-rather than trying to 
-rebuild the wheel. The aim is simple: **to navigate beginners through the basics of shiny for creating interactive online visualisations**. 
+There is already much high quality material on shiny, so why do we need another
+tutorial? This one introduces the wider context and creates a narrative for
+the excellent [RStudio tutorial](http://shiny.rstudio.com/tutorial/).
+This tutorial helps navigate this tutorial than trying to 
+reproduce it. The aim is simple:
+**to navigate beginners through the basics of shiny for creating interactive online visualisations**. 
+
+We will pursue this aim through the course of **3 tasks** that get progressively
+harder.
 
 Before
-proceeding it's worth taking a look at the following shiny resources,
+proceeding it's worth taking a look at the following **shiny** resources,
 to get a sense of what else is out there:
 
-- RStudio's [shiny website](http://shiny.rstudio.com/).
-- The shiny [github repo](https://github.com/rstudio/shiny).
+- RStudio's [**shiny** website](http://shiny.rstudio.com/).
+- The **shiny** [github repo](https://github.com/rstudio/shiny).
 - Stackexchange [questions about shiny](http://stackoverflow.com/search?q=shiny).
-- An [academic paper](http://iopscience.iop.org/1755-1315/20/1/012014) outlining the potential of shiny in precision farming.
-- The [shiny cheat sheet](http://shiny.rstudio.com/images/cheatsheet.pdf.zip).
+- An [academic paper](http://iopscience.iop.org/1755-1315/20/1/012014) outlining the potential of **shiny** in precision farming.
+- The [**shiny** cheat sheet](http://shiny.rstudio.com/images/cheatsheet.pdf.zip).
 
-# What shiny can (and cannot) do
+# What **shiny** can (and cannot) do
 
 Before committing to shiny, it's important to think about what you want
 to acheive with it.
@@ -104,11 +107,11 @@ for people who are already proficient with R.
 **shiny** is not so good at:
 
 - Serving and processing large datasets (it may be best to pre-calculate results of
-complex computations and use shiny to visualise them).
+complex computations and use **shiny** to visualise them).
 - Map serving: this may be best left to something heavier duty like [GeoServer](http://geoserver.org/) (although see the [SuperZip](http://shiny.rstudio.com/gallery/superzip-example.html) example).
 - Collecting user information.
 
-**shiny**'s strengths can be seen in the following examples.
+**shiny'**s strengths can be seen in the following examples.
 
 - The [Ebola-Dynamic-Model](https://econometricsbysimulation.shinyapps.io/Ebola-Dynamic-Model/) which provides an interactive model of Ebola infections.
 - The 'word cloud' example in RStudio's [gallery](http://shiny.rstudio.com/gallery/word-cloud.html) illustrates the display of qualitative information..
@@ -123,14 +126,14 @@ Alternatives to **shiny** are:
 - [Google charts](https://developers.google.com/chart/) which integrates with R (and shiny) via the **[googleVis](http://cran.r-project.org/package=googleVis)** package
 - [Plotly](https://plot.ly/), which has excellent integration with R via the **[plotly](https://plot.ly/r/getting-started/)** package.
 - [d3](http://d3js.org/) is an extremely flexible JavaScript visualisation package, which interfaces to R via the [d3Network](http://cran.r-project.org/web/packages/d3Network/index.html) package.
-- [rCharts](http://rcharts.io/) is similar to shiny but is more focussed on visualisation and offers fewer options for user input. It can be used in shiny apps and as an interface between d3 and other JavaScript plotting libraries.
+- [rCharts](http://rcharts.io/) is similar to **shiny** but is more focussed on visualisation and offers fewer options for user input. It can be used in **shiny** apps and as an interface between d3 and other JavaScript plotting libraries.
 
 Having browsed these options (and perhaps others) and deciding that **shiny**
 is the tool for the job, it's time to get started.
 
 # Getting started with **shiny**
 
-Shiny in fact contains a wide range of pre-built apps that can be explored and
+**shiny** in fact contains a wide range of pre-built apps that can be explored and
 modified by the user to see how the system works.
 
 To see what examples are available, use the `runExample()` function:
@@ -155,7 +158,7 @@ Spend some time taking a look at the `ui.R` and `server.R` files. Note that
 **every shiny app must contain these two files**, placed in a folder of the
 app's name. That's fundamental to the app's structure. The following directory
 structure (contained on this project's GitHub page), for example, 
-contains two shiny apps:
+contains two **shiny** apps:
 
 ```
 |-- hi
@@ -190,7 +193,9 @@ this example for our own needs.
 
 ## Downloading the project repository
 
-Navigate to the project's repository: https://github.com/Robinlovelace/learning-shiny
+To download the folder that contains all the code needed to run the examples
+in this tutorial, navigate to the project's repository:
+https://github.com/Robinlovelace/learning-shiny
 
 Click on 'Download ZIP' on the right hand side of this page. Unzip the folder.
 Navigate into this folder and open the file `learning-shiny.Rproj` in
@@ -212,15 +217,21 @@ and R to triumph over proprietary programs such as Microsoft Windows
 and [SAS](http://www.r-bloggers.com/sas-is-1in-plans-to-discontinue-use/).
 
 So let's make a modification to the `01_hello` app, so that the user can *decide*
-which colour they want the histogram to be. The end result should look like this:
+which colour they want the histogram to be. The end result should look something
+like Figure 2.
 
-![modified](/home/robin/repos/robinlovelace.github.io/img/shiny-modified-app.png)
+```{r, echo=FALSE, fig.cap="A modified version of the '01_hello' shiny example - note the dropdown menu to select colour that we have added."}
+img <- readPNG("/home/robin/repos/robinlovelace.github.io/img/shiny-modified-app.png")
+grid.raster(img)
+# ![modified](/home/robin/repos/robinlovelace.github.io/img/shiny-modified-app.png)
+```
 
 How do we create this? 
-First I'd suggest creating a new folder, perhaps called `himod` to contain
+First create a new folder and label it with your new app's name
+(perhaps called `himod` which mean's 'hello_01 modified') This folder will contain
 the new app's code so it runs from the project's root directory.
-Next we must identify some key features of the shiny
-app.
+Next we must identify and edit the two key features of the shiny
+app: the *user interface* and the *server side*.
 
 ## The user interface (ui.R)
 
@@ -244,7 +255,7 @@ shinyUI(fluidPage(
 ```
 
 We don't need to go into detail about what these are and what they do.
-This is explained on RStudio's shiny [tutorial](http://shiny.rstudio.com/tutorial/) and shiny's internal documentation system.
+This is explained on RStudio's **shiny** [tutorial](http://shiny.rstudio.com/tutorial/) and **shiny'**s internal documentation system.
 Typing `?sidebarLayout`, for example, will display some very useful help!
 As [Lesson 2](http://shiny.rstudio.com/tutorial/lesson2/) from RStudio's tutorial
 explains, `shinyUI(fluidPage( ))` alone will create the display. It is *fluid* because
@@ -267,7 +278,7 @@ selectInput(inputId = "inputID",
 You can add new widgets to the `ui.R` script without affecting the server side.
 Do this now to create the drop down menu of color selection illustrated above.
 
-> Hint: Check RStudio's [page on shiny widgets](http://shiny.rstudio.com/tutorial/lesson3/) (lesson 3 at shiny.rstudio.com/tutorial/) for a list of available widgets
+> Hint: Check RStudio's [page on **shiny** widgets](http://shiny.rstudio.com/tutorial/lesson3/) (lesson 3 at shiny.rstudio.com/tutorial/) for a list of available widgets
 
 When you are complete, run the app either by typing `runApp("hi")` or by
 clicking on the 'Run App' button in RStudio. Note that when new content is added to 
@@ -294,11 +305,11 @@ In the above code chunk there are five arguments, the latter of which
 specific to the slider: `textInput()`, `fileInput()` and the other 10+
 widgets will take slightly different arguments. However,
 **all widgets require an ID and a label**. These are always the first two
-arguments in shiny widgets and they must be user-defined *character strings*
+arguments in **shiny** widgets and they must be user-defined *character strings*
 (this means text surrounded by quote marks, single `'like this'` or double
 `"like this"`). The arguments accepted by `textInput()` and `fileInput()`
 widget functions are shown below to illustrate the point: the first
-two arguments are essential and remain unchanged for all shiny widget functions.
+two arguments are essential and remain unchanged for all **shiny** widget functions.
 
 ```{r, eval=FALSE}
 textInput(inputId = ..., label = ..., value = ...,)
@@ -335,7 +346,7 @@ Based on the above description of the link between `ui.R` and `server.R`,
 make the colour selected in the user interface implemented in **task 1a**
 be an active input into the graph: make the graph change colour.
 
-When you've completed tasks 1a and 1b, it's time to create a shiny app from scratch.
+When you've completed tasks 1a and 1b, it's time to create a **shiny** app from scratch.
 Following the learning by doing ethic, it's recommended that you type the entirety
 of the code for this app (comprising of only 2 files, `server.R` and `ui.R`),
 rather than copy-and-pasting from the rentSplit example already contained in this
@@ -346,7 +357,7 @@ the wider context: think more, work less!
 
 # Building RentSplitR
 
-To see how shiny works, there is no better way than starting with a *pen and paper*.
+To see how **shiny** works, there is no better way than starting with a *pen and paper*.
 That's because your web application should be driven by a clear sense of purpose.
 Just learning **shiny** for the hell of it, with no use cases in mind could
 be a waste of time: you'll only retain the techniques if you use them frequently
@@ -370,7 +381,7 @@ when the app, written entirely by you, finally works.
 
 By carefully completing the previous two tasks you should have built-up the
 skills needed to build and deploy your own apps. This final task is open ended:
-create your own app that meets a real world need!
+create your own app that meets a real world need.
 
 # References
 
